@@ -1,5 +1,3 @@
-# main.py
-
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD
 from resume_parser import extract_resume_info
 from scorer import score_resume
@@ -10,20 +8,18 @@ import os
 from crewai import Agent, Task, Crew
 
 def main():
-    print("🚀 Starting Automated CV Scoring System")
+    print("Starting Automated CV Scoring System")
 
-    # Load resumes
     resume_folder = 'resumes'
     if not os.path.exists(resume_folder):
-        print(f"❌ Resume folder '{resume_folder}' not found.")
+        print(f"Resume folder '{resume_folder}' not found.")
         return
 
     resumes = [os.path.join(resume_folder, f) for f in os.listdir(resume_folder) if f.endswith(('.pdf', '.docx'))]
     if not resumes:
-        print("⚠️ No resumes found in the folder.")
+        print("No resumes found in the folder.")
         return
 
-    # Define agents
     extractor_agent = Agent(role="Extractor", goal="Extract resume details", backstory="Expert at parsing resumes.")
     scorer_agent = Agent(role="Scorer", goal="Score resumes", backstory="Evaluates resumes for AI experience.")
     email_agent = Agent(role="Email Sender", goal="Send feedback emails", backstory="Handles communication.")
@@ -32,25 +28,21 @@ def main():
     crew = Crew(agents=[extractor_agent, scorer_agent, email_agent, logger_agent], tasks=[], verbose=True)
 
     for resume_path in resumes:
-        print(f"\n📄 Processing: {os.path.basename(resume_path)}")
+        print(f"\n Processing: {os.path.basename(resume_path)}")
 
-        # Step 1: Extract Info
         text, candidate_name, real_email = extract_resume_info(resume_path)
 
         if not real_email:
-            print(f"❌ Email not found in {resume_path}, skipping...")
+            print(f"Email not found in {resume_path}, skipping...")
             continue
 
-        # Step 2: Score Resume
         score_data = score_resume(text)
 
-        # Step 3: Send Email to Candidate
         send_feedback_email(real_email, candidate_name, score_data)
 
-        # Step 4: Log
         log_process(candidate_name, score_data)
 
-    print("\n✅ All resumes processed and feedback sent!")
+    print("\n All resumes processed and feedback sent!")
 
 
 if __name__ == "__main__":
