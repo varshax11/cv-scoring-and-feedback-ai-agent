@@ -1,4 +1,4 @@
-![alt text](http://url/to/img.png)
+![alt text](<img width="997" alt="Image" src="https://github.com/user-attachments/assets/9be9fd4c-03db-4df2-a0c0-f230c3a5b9dd" />)
 
 # 🤖 Automated CV Scoring and Feedback AI Agent
 
