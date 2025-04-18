@@ -14,12 +14,14 @@ This project automates the process of evaluating resumes, scoring them based on 
   - Work experience
   - Skillset
   - Relevance to Job Description (JD)
+    
 - 📊 Outputs include:
   - Masked Name & Email
   - Batch year
   - Relevant AI experience
   - JD-CV Match Score
   - Total Resume Score
+    
 - 📧 Automatically sends a personalized email to the candidate with score and feedback
 
 ---
