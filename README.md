@@ -32,7 +32,3 @@ This project automates the process of evaluating resumes, scoring them based on 
 - **PDF & DOCX Parsing:** PyPDF2, docx2txt
 - **Email Automation:** smtplib, email-validator
 
----
-
-## 📁 Folder Structure
-
