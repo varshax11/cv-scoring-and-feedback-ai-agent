@@ -7,7 +7,7 @@ def score_resume(text):
     result = classifier(text, labels)
     top_skill = result['labels'][0]
     confidence = round(result['scores'][0] * 100, 2)
-    batch_year = "2023"  # (Optional: Extract from education section)
+    batch_year = "2023" 
     ai_experience = "Yes" if "AI" in result['labels'] else "No"
     
     return {
